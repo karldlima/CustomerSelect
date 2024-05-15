@@ -1,11 +1,6 @@
 import * as React from "react";
 import { clsx } from "clsx";
 
-export interface RadioOption {
-  value: string;
-  name: string;
-}
-
 interface RadioGroupProps extends React.HTMLProps<HTMLUListElement> {
   ref?: React.Ref<HTMLUListElement>;
 }
