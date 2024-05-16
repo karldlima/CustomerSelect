@@ -1,23 +1,40 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { DisplayCard, RadioGroup, RadioGroupItem } from "./components";
 import { capitalize } from "./components/utils";
-import { userData, User, Role } from "./data/mock";
+import { User, Role, fetchCustomers } from "./graphql";
 
 function App(): JSX.Element {
-  const [role, setRole] = useState<Role>("Admin");
+  const [role, setRole] = useState<Role>("ADMIN");
+  const [customers, setCustomers] = useState<User[]>([]);
 
-  const roles: Role[] = ["Admin", "Manager"];
+  const roles = [
+    { name: "Admin", value: "ADMIN" },
+    { name: "Manager", value: "MANAGER" },
+  ];
+
+  useEffect(() => {
+    getCustomers();
+  }, []);
+
+  async function getCustomers() {
+    try {
+      const custData: User[] = await fetchCustomers();
+      setCustomers(custData);
+    } catch (err) {
+      // Error handling
+    }
+  }
+
+  console.log("customers: ", customers);
 
   const onOptionChange = (roleOption: React.ChangeEvent<HTMLInputElement>) => {
     setRole(roleOption.target.value as Role);
   };
 
   const filteredUsers: User[] = useMemo(() => {
-    return userData.filter(
-      (user) => user.role.toLowerCase() === role.toLowerCase()
-    );
-  }, [role]);
+    return customers.filter((user) => user.role === role);
+  }, [role, customers]);
 
   return (
     <div className="flex min-w-[320px] min-h-screen">
@@ -25,29 +42,33 @@ function App(): JSX.Element {
         <div className="border-b-2 py-6">
           <h2 className="mb-6">User Types</h2>
           <RadioGroup>
-            {roles.map((roleValue, i) => (
+            {roles.map(({ name, value }, i) => (
               <RadioGroupItem
                 key={i}
-                id={`radio-${roleValue}-${i}`}
-                value={roleValue}
-                {...(role === roleValue && { checked: true })}
-                defaultChecked={role === roleValue}
+                id={`radio-${value}-${i}`}
+                value={value}
+                {...(role === value && { checked: true })}
+                defaultChecked={role === value}
                 onChange={onOptionChange}
               >
-                {roleValue}
+                {name}
               </RadioGroupItem>
             ))}
           </RadioGroup>
         </div>
         <div className="border-b-2 py-6">
           <h2 className="mb-6">{capitalize(role)} Users</h2>
-          {filteredUsers.map(
-            ({ name, role }, i) =>
-              !!name.length && (
-                <div className="mb-3" key={i}>
-                  <DisplayCard name={name} role={role} />
-                </div>
-              )
+          {!!filteredUsers?.length ? (
+            filteredUsers.map(
+              ({ name, role }, i) =>
+                !!name.length && (
+                  <div className="mb-3" key={i}>
+                    <DisplayCard name={name} role={role} />
+                  </div>
+                )
+            )
+          ) : (
+            <h4>Please refine search</h4>
           )}
         </div>
       </div>
