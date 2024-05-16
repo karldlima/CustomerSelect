@@ -1,15 +1,15 @@
 enum RoleType {
-  Admin = "admin",
-  Manager = "manager",
+  ADMIN = "admin",
+  MANAGER = "manager",
 }
 
 export type Role = keyof typeof RoleType;
 
 export interface User {
   email: string;
-  id: number;
+  id: string;
   name: string;
   role: Role;
 }
 
-export * from "./userData";
+export * from "./helpers";
