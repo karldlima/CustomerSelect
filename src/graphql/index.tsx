@@ -5,7 +5,7 @@ enum RoleType {
 
 export type Role = keyof typeof RoleType;
 
-export interface User {
+export interface Customer {
   email: string;
   id: string;
   name: string;
