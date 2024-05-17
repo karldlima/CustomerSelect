@@ -10,19 +10,19 @@
 }
 
 h1 {
-  @apply text-4xl;
+  @apply text-4xl lg:text-2xl;
 }
 h2 {
-  @apply text-2xl;
+  @apply text-2xl lg:text-xl;
 }
 h3 {
-  @apply text-xl;
+  @apply text-xl lg:text-base;
 }
 h4 {
-  @apply text-base;
+  @apply text-base lg:text-sm;
 }
 h5 {
-  @apply text-sm font-light;
+  @apply text-sm font-light lg:text-xs;
 }
 h6 {
   @apply text-xs font-light;
