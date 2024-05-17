@@ -21,3 +21,7 @@ We follow a development branch naming convention: `<work type>/<issue-number>-<s
 2. Use dashes - to separate words.
 3. Include related issue number (if any).
 4. Describe the topic using two or three words.
+
+### Components
+
+The `components` folder contains generic reusable elements essential for building user interfaces. These components are agnostic to specific application logic, making them versatile and easily reusable across various features within the application.
