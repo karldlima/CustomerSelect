@@ -1,17 +1,17 @@
 import { generateClient } from "aws-amplify/api";
 
-import { User } from "..";
+import { Customer } from "..";
 import { ListZellerCustomers } from "../queries";
 
 const client = generateClient({ authMode: "apiKey" });
 
 type FetchCustomersQuery = {
   listZellerCustomers: {
-    items: User[];
+    items: Customer[];
   };
 };
 
-export const fetchCustomers = async (): Promise<User[]> => {
+export const fetchCustomers = async (): Promise<Customer[]> => {
   try {
     const custData = (await client.graphql({ query: ListZellerCustomers })) as {
       data: FetchCustomersQuery;
