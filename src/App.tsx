@@ -26,7 +26,16 @@ function App(): JSX.Element {
 
   return (
     <>
-      <CustomerSelect customers={customers} roles={roles} defaultRole="ADMIN" />
+      <header className="pl-12 pt-6">
+        <h1>Customer Select</h1>
+      </header>
+      <main>
+        <CustomerSelect
+          customers={customers}
+          roles={roles}
+          defaultRole="ADMIN"
+        />
+      </main>
     </>
   );
 }

@@ -10,7 +10,7 @@
 }
 
 h1 {
-  @apply text-4xl lg:text-2xl;
+  @apply text-4xl lg:text-3xl;
 }
 h2 {
   @apply text-2xl lg:text-xl;
