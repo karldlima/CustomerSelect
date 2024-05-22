@@ -28,7 +28,7 @@ function CustomerSelect({
   return (
     <div className="flex min-w-[320px] min-h-screen">
       <div className="w-screen min-w-48 p-12">
-        <div className="border-b-2 py-6">
+        <section className="border-b-2 pb-6">
           <h2 className="mb-6">User Types</h2>
           {!!roles?.length ? (
             <RadioGroup>
@@ -48,8 +48,8 @@ function CustomerSelect({
           ) : (
             <h4>No user types available</h4>
           )}
-        </div>
-        <div className="border-b-2 py-6">
+        </section>
+        <section className="border-b-2 py-6">
           <h2 className="mb-6">{capitalize(role)} Users</h2>
           {!!filteredCustomers?.length ? (
             filteredCustomers.map(
@@ -63,7 +63,7 @@ function CustomerSelect({
           ) : (
             <h4>Please refine search</h4>
           )}
-        </div>
+        </section>
       </div>
     </div>
   );
