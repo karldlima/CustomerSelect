@@ -8,12 +8,7 @@ interface RadioGroupProps extends React.HTMLProps<HTMLUListElement> {
 const RadioGroup = React.forwardRef<HTMLUListElement, RadioGroupProps>(
   ({ ...props }, ref): JSX.Element => {
     return (
-      <ul
-        className="text-sm font-medium text-gray-900"
-        {...props}
-        ref={ref}
-        aria-label="options"
-      />
+      <ul className="text-sm font-medium text-gray-900" {...props} ref={ref} />
     );
   }
 );
@@ -28,7 +23,7 @@ interface RadioGroupItemProps
 const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemProps>(
   ({ id, checked, children, ...props }, ref): JSX.Element => {
     return (
-      <li className="w-full rounded-t-lg">
+      <li className="w-full rounded-t-lg" aria-label="option">
         <div
           className={clsx(
             "flex items-center ps-3 rounded-lg",

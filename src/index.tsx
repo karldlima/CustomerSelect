@@ -4,6 +4,7 @@ import { Amplify } from "aws-amplify";
 
 import App from "./App.tsx";
 import awsconfig from "./aws-exports";
+
 import "./index.css";
 
 Amplify.configure(awsconfig);
